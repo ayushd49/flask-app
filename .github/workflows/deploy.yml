@@ -34,7 +34,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 22
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/fastapi-app
-            docker stop fastapi-container || true
-            docker rm fastapi-container || true
-            docker run -d -p 8000:8000 --name fastapi-container ${{ secrets.DOCKER_USERNAME }}/fastapi-app
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/fastapi-app
+            sudo docker stop fastapi-container || true
+            sudo docker rm fastapi-container || true
+            sudo docker run -d -p 8000:8000 --name fastapi-container ${{ secrets.DOCKER_USERNAME }}/fastapi-app
