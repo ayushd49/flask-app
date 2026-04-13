@@ -80,11 +80,10 @@ pipeline {
                     // Use the globally captured instance IP
                     sh """
                         ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ubuntu@${env.INSTANCE_IP} '
-                        echo $(hostname)
                         if ! command -v docker &> /dev/null
                         then
                             sudo apt-get update &&
-                            sudo apt-get install -y docker.io
+                            sudo apt-get install -y docker-ce
                             sudo systemctl start docker &&
                             sudo systemctl enable docker
                         fi
