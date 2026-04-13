@@ -80,17 +80,16 @@ pipeline {
                     // Use the globally captured instance IP
                     sh """
                         ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ubuntu@${env.INSTANCE_IP} '
+                        echo $(hostname)
                         if ! command -v docker &> /dev/null
                         then
                             sudo apt-get update &&
-                            sudo apt-get install -y docker-ce
+                            sudo apt-get install -y docker.io
                             sudo systemctl start docker &&
                             sudo systemctl enable docker
                         fi
 
-                        # Get the public IP of the EC2 instance and save it to PUBLIC_IP
-                        PUBLIC_IP=\$(curl -s http://13.62.56.11/latest/meta-data/public-ipv4)
-                        echo "Public IP of EC2 Instance: \$PUBLIC_IP"
+                        
                         '
                     """
                 }
