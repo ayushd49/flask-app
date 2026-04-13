@@ -103,7 +103,7 @@ pipeline {
                 script {
                     sh "ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ubuntu@${env.INSTANCE_IP} 'sudo docker pull ${DOCKER_IMAGE_NAME}:${TAG}'"
                     sh "ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ubuntu@${env.INSTANCE_IP} 'sudo docker stop node_app || true && sudo docker rm node_app || true'"
-                    sh "ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ubuntu@${env.INSTANCE_IP} 'sudo docker run -p 3000:3000 --name node_app -d ${DOCKER_IMAGE_NAME}:${TAG}'"
+                    sh "ssh -o StrictHostKeyChecking=no -i ${SSH_KEY_PATH} ubuntu@${env.INSTANCE_IP} 'sudo docker run -p 8020:5000 --name node_app -d ${DOCKER_IMAGE_NAME}:${TAG}'"
                 }
             }
         }
