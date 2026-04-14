@@ -1,6 +1,8 @@
 pipeline {
     agent any
 
+    
+
     environment {
         DOCKER_HUB_CREDENTIAL_ID = 'dockerhub'
         DOCKER_IMAGE_NAME = 'rationalkid/flaskimage8020'
@@ -19,39 +21,6 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/ayushd49/flask-app.git'
             }
         }
-
-        // 1. Code Quality & Security Analysis
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         withSonarQubeEnv('sonar-server') {
-        //             script {
-        //                 sh """
-        //                 ${SONAR_SCANNER} \
-        //                 -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-        //                 -Dsonar.sources=.
-        //                 """
-        //             }
-        //         }
-        //     }
-        // }
-
-        // 2. Terraform Init and Apply
-        // stage('Terraform Apply') {
-        //     steps {
-        //         withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: env.AWS_CREDENTIALS_ID]]) {
-        //             script {
-        //                 sh """
-        //                 cd terraform
-        //                 terraform init
-        //                 terraform apply -auto-approve
-        //                 """
-        //                 // Capture the instance IP output and assign it to the environment variable
-        //                 env.INSTANCE_IP = sh(script: "cd terraform && terraform output -raw -no-color instance_ip", returnStdout: true).trim()
-        //                 echo "EC2 Instance IP: ${env.INSTANCE_IP}"
-        //             }
-        //         }
-        //     }
-        // }
 
         // 3. Build Docker Image
         stage('Build Docker Image') {
